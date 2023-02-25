@@ -16,7 +16,6 @@ import TableList from "views/Table/TableList.js";
 
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import DateRange from "@material-ui/icons/DateRange";
-import GridOn from "@material-ui/icons/GridOn";
 import Image from "@material-ui/icons/Image";
 
 import Timeline from "@material-ui/icons/Timeline";

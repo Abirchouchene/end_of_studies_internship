@@ -50,15 +50,18 @@ export default function TableList() {
 
         <GridContainer>
 
+
             <div style={{ textAlign: "center" }}>
                 <h1><b>Doctors Reps</b></h1>
+
             </div>
 
             <GridItem xs={12} sm={12} md={12}>
                 <Card>
 
+
                     <CardHeader color="primary">
-                        <h4 className={classes.cardTitleWhite}>Doctors List</h4>
+                        <h4 className={classes.cardTitleWhite}>Doctors List </h4>
 
                     </CardHeader>
                     <CardBody>

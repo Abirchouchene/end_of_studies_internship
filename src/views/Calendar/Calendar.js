@@ -9,9 +9,12 @@ import SweetAlert from "react-bootstrap-sweetalert";
 
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
 // core components
-import Heading from "components/Heading/Heading.js";
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 import Card from "components/Card/Card.js";
@@ -29,6 +32,11 @@ export default function Calendar() {
   const classes = useStyles();
   const [events, setEvents] = React.useState(calendarEvents);
   const [alert, setAlert] = React.useState(null);
+  const [selectedValue, setSelectedValue] = React.useState('a');
+
+  const handleChange = (event) => {
+    setSelectedValue(event.target.value);
+  };
   const selectedEvent = (event) => {
     window.alert(event.title);
   };
@@ -70,7 +78,7 @@ export default function Calendar() {
   };
   return (
     <div>
-      <Heading
+      {/* <Heading
         textAlign="center"
         title="React Big Calendar"
         category={
@@ -92,7 +100,24 @@ export default function Calendar() {
           </span>
         }
       />
-      {alert}
+      {alert} */}<div style={{ position: "relative", right: "-1400px" }}>
+        <FormControl sx={{ position: "relative", right: "-540px" }} component="fieldset">
+
+          <RadioGroup row aria-label="position" name="position" defaultValue="top">
+            <FormControlLabel
+              value="top"
+              control={<Radio color="primary" />}
+              label="Calendar View"
+              labelPlacement="right"
+            />
+            <FormControlLabel
+              value="start"
+              control={<Radio color="primary" />}
+              label="List View"
+              labelPlacement="right"
+            />
+          </RadioGroup>
+        </FormControl ></div>
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={10}>
           <Card>

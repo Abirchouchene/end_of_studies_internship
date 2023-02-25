@@ -1,37 +1,19 @@
-import React from "react";
-// react plugin for creating charts
-import ChartistGraph from "react-chartist";
-// react plugin for creating vector maps
-import GridTable from '@nadavshaar/react-grid-table';
+import React, { useState, useEffect } from "react";
 
 
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-import Tooltip from "@material-ui/core/Tooltip";
 import Icon from "@material-ui/core/Icon";
 
 // @material-ui/icons
 // import ContentCopy from "@material-ui/icons/ContentCopy";
 import Store from "@material-ui/icons/Store";
-// import InfoOutline from "@material-ui/icons/InfoOutline";
-import Warning from "@material-ui/icons/Warning";
-import DateRange from "@material-ui/icons/DateRange";
-import LocalOffer from "@material-ui/icons/LocalOffer";
-import Update from "@material-ui/icons/Update";
-import ArrowUpward from "@material-ui/icons/ArrowUpward";
-import AccessTime from "@material-ui/icons/AccessTime";
-import Refresh from "@material-ui/icons/Refresh";
-import Edit from "@material-ui/icons/Edit";
-import Place from "@material-ui/icons/Place";
-import ArtTrack from "@material-ui/icons/ArtTrack";
-import Language from "@material-ui/icons/Language";
 
 // core components
 import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
+import GridItem from "components/Grid/GridItem";
 import Table from "components/Table/Table.js";
-import Button from "components/CustomButtons/Button.js";
-import Danger from "components/Typography/Danger.js";
+
 import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CardIcon from "components/Card/CardIcon.js";
@@ -39,12 +21,7 @@ import CardBody from "components/Card/CardBody.js";
 import CardFooter from "components/Card/CardFooter.js";
 
 
-import {
-  dailySalesChart,
-  emailsSubscriptionChart,
-  completedTasksChart,
-} from "variables/charts";
-
+// import { get } from "api-ws"
 import styles from "assets/jss/material-dashboard-pro-react/views/dashboardStyle.js";
 
 
@@ -70,9 +47,24 @@ var mapData = {
   US: 2920,
 };
 
+
 const useStyles = makeStyles(styles);
 
 export default function Dashboard() {
+  const [usersList, setUsersList] = useState([])
+
+  // const getUsers = (url) => {
+  //   get(url).then((res) => {
+  //     console.log(res)
+  //     setUsersList(res.data)
+
+  //   })
+  // }
+
+  // useEffect(() => {
+  //   getUsers("/users");
+  // }, [])
+
   const classes = useStyles();
   return (
 
@@ -84,7 +76,10 @@ export default function Dashboard() {
         <h1><b>Dashboard</b></h1>
       </div>
 
-      <h4><b>Todays Recap</b> </h4><p style={{ textAlign: "right" }}> <label for="pet-select"></label>
+      <span style={{
+        position: "relative",
+        top: "20px"
+      }} ><b>Todays Recap</b> </span><p style={{ textAlign: "right" }}> <label for="pet-select"></label>
         <select name="pets" id="pet-select">
           <option value="">--Please choose an option--</option>
           <option value="dog">pharma1</option>
@@ -96,7 +91,7 @@ export default function Dashboard() {
           <Card>
             <CardHeader color="warning" stats icon>
               <CardIcon color="warning">
-                <Icon>content_copy</Icon>
+                <Icon></Icon>
               </CardIcon>
               <p className={classes.cardCategory}><b>Planned</b></p>
               <h3 className={classes.cardTitle}>
@@ -129,7 +124,9 @@ export default function Dashboard() {
           <Card>
             <CardHeader color="danger" stats icon>
               <CardIcon color="danger">
-                <Icon>info_outline</Icon>
+                <Icon>
+
+                </Icon>
               </CardIcon>
               <p className={classes.cardCategory}>Cancled</p>
 
@@ -157,42 +154,34 @@ export default function Dashboard() {
       <GridContainer>
         <GridItem xs={12}>
           <Card>
-            <h4> <b>last visits</b><p style={{ textAlign: "right" }}> <label for="pet-select"></label>
-              <select name="pets" id="pet-select">
-                <option value="">--Please choose an option--</option>
-                <option value="dog">pharma1</option>
-                <option value="cat">pharma2</option>
+            <span style={{
+              position: "relative",
+              top: "28px",
+              left: "8px"
+            }}> <b>Last visits</b><p style={{ textAlign: "right" }}> <label htmlFor="pet-select"></label>
+                <select style={{
+                  position: "relative",
+                  top: "-18px",
+                  right: "25px"
 
-              </select></p></h4>
+                }} name="pets" id="pet-select">
+                  <option value="">--Please choose an option--</option>
+                  <option value="dog">pharma1</option>
+                  <option value="cat">pharma2</option>
+
+                </select></p></span>
             <CardBody>
-              <GridContainer justify="space-between">
-                <GridItem xs={12} sm={12} md={5}>
-                  <Table
-                    tableData={[
-                      [
-                        <img src="assets/img/flags/Ll.png" />,
-                        "DOTW",
-                        "visits",
-                        "Sector",
-                      ],
-                      [
-                        <img src="assets/img/flags/Ll.png" />,
-                        "",
-                        "Product sample",
-                        "Decisoin",
-                      ],
-                      [
-                        <img src="assets/img/flags/Ll.png" />,
-                        "Contact5",
-                        "Product sample",
-                        "Decisoin",
-                      ],
+              <CardBody>
+                <Table
+                  tableHeaderColor="primary"
+                  tableHead={["DOTW", "Sector", "Phone number"]}
+                  tableData={[
+                    ["", "Product sample", "Decisoin",],
+                    ["Contact 5", "Product sample", "Decisoin"]
 
-                    ]}
-                  />
-                </GridItem>
-
-              </GridContainer>
+                  ]}
+                />
+              </CardBody>
             </CardBody>
           </Card>
         </GridItem>
